@@ -12,6 +12,7 @@
 , runCommand
 , unzip
 , cacert
+, fontconfig ? makeFontsConf { fontDirectories = []; impureFontDirectories = []; }
 }:
 let
   inherit (stdenv.hostPlatform) system;
@@ -104,11 +105,7 @@ let
     meta.platforms = lib.platforms.darwin;
   };
 
-  browsers-linux = { withChromium ? true }: let
-    fontconfig = makeFontsConf {
-      fontDirectories = [];
-    };
-  in
+  browsers-linux = { withChromium ? true }:
     runCommand ("playwright-browsers"
     + lib.optionalString withChromium "-chromium")
   {
