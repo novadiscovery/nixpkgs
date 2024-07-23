@@ -1098,6 +1098,8 @@ rec {
             preferLocalBuild = true;
             passthru = passthru // {
               inherit (conf) imageTag;
+              inherit conf;
+              inherit streamScript;
 
               # Distinguish tarballs and exes at the Nix level so functions that
               # take images can know in advance how the image is supposed to be used.
