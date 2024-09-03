@@ -207,12 +207,10 @@ let
   };
 
   browsers-linux =
-    {
+    lib.makeOverridable ({
       withChromium ? true,
+      fontconfig ? makeFontsConf { fontDirectories = [ ]; }
     }:
-    let
-      fontconfig = makeFontsConf { fontDirectories = [ ]; };
-    in
     runCommand ("playwright-browsers" + lib.optionalString withChromium "-chromium")
       {
         nativeBuildInputs = [
@@ -239,7 +237,7 @@ let
           mkdir -p $out/ffmpeg-$FFMPEG_REVISION
           ln -s ${ffmpeg}/bin/ffmpeg $out/ffmpeg-$FFMPEG_REVISION/ffmpeg-linux
         ''
-      );
+      ));
 in
 {
   playwright-core = playwright-core;
