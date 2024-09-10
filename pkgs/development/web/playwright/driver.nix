@@ -230,7 +230,7 @@ let
           # https://github.com/NixOS/nixpkgs/issues/136207#issuecomment-908637738
           makeWrapper ${chromium}/bin/chromium $out/chromium-$CHROMIUM_REVISION/chrome-linux/chrome \
             --set SSL_CERT_FILE /etc/ssl/certs/ca-bundle.crt \
-            --set FONTCONFIG_FILE ${fontconfig}
+            --set-default FONTCONFIG_FILE ${fontconfig}
         ''
         + ''
           FFMPEG_REVISION=$(jq -r '.browsers[] | select(.name == "ffmpeg").revision' $BROWSERS_JSON)
