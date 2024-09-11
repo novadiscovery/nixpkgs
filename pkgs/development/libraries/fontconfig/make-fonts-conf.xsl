@@ -24,10 +24,10 @@
       <xsl:apply-templates select="child::node()[name() != 'dir' and name() != 'cachedir' and name() != 'include']" />
 
       <!-- the first cachedir will be used to store the cache -->
-      <!--<cachedir prefix="xdg">fontconfig</cachedir>-->
+      <cachedir prefix="xdg">fontconfig</cachedir>
       <xsl:text>&#0010;</xsl:text>
       <!-- /var/cache/fontconfig is useful for non-nixos systems -->
-      <!--<cachedir>/var/cache/fontconfig</cachedir>-->
+      <cachedir>/var/cache/fontconfig</cachedir>
       <xsl:text>&#0010;</xsl:text>
 
       <!-- system-wide config -->
@@ -36,7 +36,7 @@
         <xsl:text>&#0010;</xsl:text>
       </xsl:for-each>
 
-      <!--<dir prefix="xdg">fonts</dir>-->
+      <dir prefix="xdg">fonts</dir>
       <xsl:text>&#0010;</xsl:text>
       <xsl:for-each select="str:tokenize($fontDirectories)">
         <dir><xsl:value-of select="." /></dir>
